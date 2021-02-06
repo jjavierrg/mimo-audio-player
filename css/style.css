@@ -1,0 +1,24 @@
+body {
+    background-color: orange;
+    width: 100vw;
+    height: 100vh;
+}
+
+.img-album-thumb {
+    max-width: 48px;
+    max-height: 48px;
+    width: auto;
+    height: auto;
+}
+
+.c-pointer {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.no-selection {
+    user-select: none;
+}
