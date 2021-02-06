@@ -1,20 +1,21 @@
 import App from '../src/components/app.component.js'
+import Album from '../src/components/album.component.js'
+import Artist from '../src/components/artist.component.js'
+import Dashboard from '../src/components/dashboard.component.js'
 
-// const router = new VueRouter({
-//     routes: [
-//         { path: '/granty', component: GrantsCallList, name: 'grants' },
-//         { path: '/granty/vyzva/:call_id', component: GrantCallProjects, name: 'grantprojects' },
-//         { path: '/granty/vyzva/:call_id/zadost', component: GrantApply, name: 'grantapply' },
-//         { path: '/granty/subjekt', component: GrantSubjectEdit, name: 'grantsubj' },
+const router = new VueRouter({
+    routes: [
+        { path: '/album/:album_id', component: Album, name: 'albums' },
+        { path: '/artist/:artist_id', component: Artist, name: 'artists' },
 
-//         { path: '/form', component: FormList, name: 'formlist' },
-//         { path: '/form/:form_id', component: Form, name: 'form' },
-//         { path: '', component: Dashboard, name: 'home' }
-//     ]
-// })
+        { path: '', component: Dashboard, name: 'dashboard' },
+        { path: '*', component: Dashboard, name: 'dashboard' }
+    ]
+})
 
 
 var app = new Vue({
+    router,
     components: {
         'mimo-app': App
     },

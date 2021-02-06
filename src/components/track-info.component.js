@@ -6,10 +6,10 @@ export default {
             <img v-bind:src="track.image" class="me-2 img-album-thumb" @click="play" /> 
             <span class="me-2 flex-grow-1 align-self-stretch d-flex flex-column">
                 <span class="no-selection" @click="play">{{track.name}}</span>
-                <a href="#">{{track.artist_name}}</a>
+                <span @click="viewArtist" class="text-primary c-pointer">{{track.artist_name}}</span>
             </span>
             <div v-if="track.audiodownload_allowed" class="me-2 c-pointer" title="Download track" @click="download"><i class="fas fa-download"></i></div>
-            <div class="me-2 c-pointer" title="View album information" @click="viewArtist"><i class="fas fa-compact-disc"></i></div>
+            <div class="me-2 c-pointer" title="View album information" @click="viewAlbum"><i class="fas fa-compact-disc"></i></div>
             <div class="me-2 c-pointer" title="Play track" @click="play"><i class="fas fa-play"></i></div>
         </div>
     `,
@@ -21,10 +21,10 @@ export default {
             window.open(this.track.audiodownload);
         },
         viewAlbum() {
-            this.$emit("viewAlbum", this.track.album_id);
+            this.$router.push(`/album/${this.track.album_id}`);
         },
         viewArtist() {
-            this.$emit("viewArtist", this.track.artist_idstr);
+            this.$router.push(`/artist/${this.track.artist_idstr}`);
         }
     }
 }

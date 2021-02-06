@@ -9,8 +9,8 @@ export default {
     },
     template: `
     <div class="d-flex flex-column w-100 h-100">
-        <mimo-search class="p-2" @play="playTrack"></mimo-search>
-        <div class="container-fluid flex-grow-1">hola</div>
+        <mimo-search class="m-2" @play="playTrack"></mimo-search>
+        <div class="container-fluid flex-grow-1"><router-view></router-view></div>
         <mimo-player :track="track"></mimo-player>
     </div>
     `,
