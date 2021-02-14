@@ -8,17 +8,17 @@ export default class RadioService {
     }
 
     async getRadiosAsync() {
-        var result = await this.apiService.getAsync("radios");
+        const result = await this.apiService.getAsync("radios");
         return result.results;
     }
 
     async playFile(fileId) {
-        var result = await this.apiService.getAsync("tracks/file", `action=stream&id=${fileId}`);
+        const result = await this.apiService.getAsync("tracks/file", `action=stream&id=${fileId}`);
         return result.results;
     }
 
     async downloadFile(fileId) {
-        var result = await this.apiService.getAsync("tracks/file", `action=download&id=${fileId}`);
+        const result = await this.apiService.getAsync("tracks/file", `action=download&id=${fileId}`);
         return result.results;
     }
 
@@ -27,7 +27,16 @@ export default class RadioService {
             return;
         }
 
-        var result = await this.apiService.getAsync("tracks", `format=jsonpretty&search=${query}`);
+        const result = await this.apiService.getAsync("tracks", `format=jsonpretty&search=${query}`);
         return result.results;
+    }
+
+    async getArtistInfo(artistId) {
+        if (!artistId) {
+            return;
+        }
+
+        const result = await await this.apiService.getAsync("artists/albums", `id=${artistId}`);
+        return !!result.results && !!result.results.length ? result.results[0] : undefined;
     }
 }

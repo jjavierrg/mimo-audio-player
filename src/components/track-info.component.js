@@ -24,7 +24,7 @@ export default {
             this.$router.push(`/album/${this.track.album_id}`);
         },
         viewArtist() {
-            this.$router.push(`/artist/${this.track.artist_idstr}`);
+            this.$router.push(`/artist/${this.track.artist_id}`);
         }
     }
 }
