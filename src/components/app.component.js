@@ -13,7 +13,7 @@ export default {
             <i class="ms-3 c-pointer fas fa-home text-white fa-2x" @click="goHome"></i>
             <mimo-search  @play="playTrack" class="mx-2 flex-grow-1"></mimo-search>
         </div>
-        <div class="container-fluid flex-grow-1 overflow-auto"><router-view></router-view></div>
+        <div class="container-fluid flex-grow-1 mb-3 overflow-auto"><router-view  @play="playTrack" class="bg-white w-100 h-100 rounded p-2"></router-view></div>
         <mimo-player :track="track"></mimo-player>
     </div>
     `,

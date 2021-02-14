@@ -7,20 +7,18 @@ export default {
         'mimo-album-info': AlbumInfo,
     },
     template: `
-    <div v-if="!!artistInfo" class="w-100 h-100 pb-3">
-        <div class="bg-white w-100 h-100 rounded d-flex flex-column">
-            <fieldset class="d-flex">
-                <img  v-bind:src="artistInfo.image" class="m-3 rounded img-album" /> 
-                <fieldset class="mt-3 d-flex flex-column">
-                    <h2>{{ artistInfo.name }}</h2>
-                    <label>Member since: {{ artistInfo.joindate }}</label>
-                    <label v-if="!!artistInfo.website">WebSite: {{ artistInfo.website }}</label>
-                </fieldset>
+    <div v-if="!!artistInfo" class="d-flex flex-column">
+        <fieldset class="d-flex mb-2">
+            <img  v-bind:src="artistInfo.image" class="rounded img-album" /> 
+            <fieldset class="ms-3 d-flex flex-column">
+                <h2>{{ artistInfo.name }}</h2>
+                <label>Member since: {{ artistInfo.joindate }}</label>
+                <label v-if="!!artistInfo.website">WebSite: {{ artistInfo.website }}</label>
             </fieldset>
-            <div v-if="!!artistInfo.albums && !!artistInfo.albums.length" class="flex-grow-1 overflow-auto">
-                <h4 class="mt-3 ms-3">Albums</h4>
-                <mimo-album-info v-for="album in artistInfo.albums" :key="album.id" :album="album"></mimo-album-info>
-            </div>
+        </fieldset>
+        <div v-if="!!artistInfo.albums && !!artistInfo.albums.length" class="flex-grow-1 overflow-auto">
+            <h4 class="mt-3 ms-3">Albums</h4>
+            <mimo-album-info v-for="album in artistInfo.albums" :key="album.id" :album="album"></mimo-album-info>
         </div>
     </div>
     `,

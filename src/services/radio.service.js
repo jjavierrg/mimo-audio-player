@@ -39,4 +39,19 @@ export default class RadioService {
         const result = await await this.apiService.getAsync("artists/albums", `id=${artistId}`);
         return !!result.results && !!result.results.length ? result.results[0] : undefined;
     }
+
+    async getAlbumInfo(albumId) {
+        if (!albumId) {
+            return;
+        }
+
+        const result = await await this.apiService.getAsync("albums/tracks", `id=${albumId}`);
+        const album = !!result.results && !!result.results.length ? result.results[0] : undefined;
+
+        if (!!album && !!album.tracks && album.tracks.length) {
+            album.tracks = album.tracks.sort(t => parseInt(!t.position ? 0 : t.position, 10))
+        }
+
+        return album;
+    }
 }

@@ -10,7 +10,7 @@ export default {
         <div class="dropdown p-relative">
             <input v-model=query class="form-control" v-model="query" placeholder="search" id="track-search" data-bs-toggle="dropdown">
               <ul v-show="results" class="dropdown-menu w-100" role="menu" aria-labelledby="track-search">
-                <li v-for="r in results" :key="r.id"><mimo-track-info class="dropdown-item"  :track="r" @play="playTrack"></mimo-track-info> </li>
+                <li v-for="r in results" :key="r.id"><mimo-track-info class="dropdown-item"  :track="r" :showAlbumInfo="true" :showCover="true"  @play="playTrack"></mimo-track-info> </li>
                 <li v-if="results && !results.length" class="dropdown-header">No results</li>
             </ul>
         </div>

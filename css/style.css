@@ -19,7 +19,7 @@ body {
 }
 
 .c-pointer {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 a {
@@ -32,4 +32,14 @@ a {
 
 .dropdown-menu {
     transform: translate(0px, 46px) !important;
+}
+
+.album-track {
+    min-height: 50px;
+    border-bottom: 1px solid;
+}
+
+.album-track:hover {
+    color: #1e2125;
+    background-color: #e9ecef;
 }
