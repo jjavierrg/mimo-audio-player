@@ -1,5 +1,6 @@
 import Search from './search.component.js';
 import Player from './player.component.js';
+import StorageService from '../services/storage.service.js';
 
 export default {
     name: 'mimo-app',
@@ -13,7 +14,7 @@ export default {
             <i class="ms-3 c-pointer fas fa-home text-white fa-2x" @click="goHome" v-bind:title="$t('core.home')"></i>
             <mimo-search  @play="playTrack" class="mx-2 flex-grow-1"></mimo-search>
             <div class="locale-changer me-2">
-                <select v-model="$i18n.locale" class="form-select">
+                <select v-model="$i18n.locale" class="form-select" @change="save">
                     <option v-for="(lang, i) in Object.keys($i18n.messages)" :key="i" :value="lang">{{ lang }}</option>
                 </select>
             </div>
@@ -22,6 +23,13 @@ export default {
         <mimo-player :track="track"></mimo-player>
     </div>
     `,
+    created() {
+        this.storage = new StorageService();
+        const userConf = this.storage.getUserConf();
+        this.userConf = userConf || { locale: 'en' };
+
+        this.$i18n.locale = this.userConf.locale;
+    },
     data() {
         return {
             track: undefined
@@ -33,6 +41,10 @@ export default {
         },
         goHome() {
             this.$router.push(`/dashboard`);
+        },
+        save() {
+            this.userConf.locale = this.$i18n.locale;
+            this.storage.saveUserConf(this.userConf);
         }
     }
 }
