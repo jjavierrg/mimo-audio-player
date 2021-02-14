@@ -24,7 +24,8 @@ const messages = {
     pause: 'Pçause',
     mute: 'Click to mute',
     unmute: 'Click to unmute',
-    download: 'Click to download'
+    download: 'Click to download',
+    playing: 'Playing {track}',
   },
   track: {
     download: 'Download track',

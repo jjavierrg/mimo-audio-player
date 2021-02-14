@@ -37,6 +37,10 @@ export default {
     },
     methods: {
         play() {
+            if (!this.track) {
+                return;
+            }
+
             this.playing = true;
             this.audio.play();
         },
@@ -55,6 +59,7 @@ export default {
         reset() {
             this.audio.pause();
             this.progess = 0;
+            this.playing = false;
         }
     },
     watch: {

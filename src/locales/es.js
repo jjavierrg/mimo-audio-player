@@ -24,7 +24,8 @@ const messages = {
     pause: 'Pausar',
     mute: 'Click para silenciar',
     unmute: 'Click para activar volument',
-    download: 'Click para descargar'
+    download: 'Click para descargar',
+    playing: 'Reproduciendo {track}',
   },
   track: {
     download: 'Descargar canción',

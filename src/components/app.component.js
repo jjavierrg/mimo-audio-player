@@ -1,6 +1,7 @@
 import Search from './search.component.js';
 import Player from './player.component.js';
 import StorageService from '../services/storage.service.js';
+import NotificationService from '../services/notification.service.js';
 
 export default {
     name: 'mimo-app',
@@ -25,8 +26,11 @@ export default {
     `,
     created() {
         this.storage = new StorageService();
+        this.noficationService = new NotificationService();
+
         const userConf = this.storage.getUserConf();
         this.userConf = userConf || { locale: 'en' };
+        this.noficationService.requestPermission();
 
         this.$i18n.locale = this.userConf.locale;
     },
@@ -37,6 +41,7 @@ export default {
     },
     methods: {
         playTrack(track) {
+            this.noficationService.notifyTrack(track, this.$t("player.playing", { track: track.name }));
             this.track = track;
         },
         goHome() {

@@ -12,7 +12,7 @@ export default {
             <img  v-bind:src="albumInfo.image" class="rounded img-album" /> 
             <fieldset class="ms-3 d-flex flex-column">
                 <h2>{{ albumInfo.name }}</h2>
-                <label>{{ $t("album.artist", { name: albumInfo.artist_name }) }}</label>
+                <router-link :to="{ name: 'artists', params: { artist_id: albumInfo.artist_id }}">{{ $t("album.artist", { name: albumInfo.artist_name }) }}</router-link>
                 <label>{{ $t("album.release_date", { date: albumInfo.releasedate }) }}</label>
             </fieldset>
         </fieldset>
@@ -45,7 +45,7 @@ export default {
             this.loading = false;
         },
         play(track) {
-            const trackToPlay = { ...track, artist_name: this.albumInfo.artist_name, album_name: this.albumInfo.name };
+            const trackToPlay = { ...track, artist_name: this.albumInfo.artist_name, album_name: this.albumInfo.name, image: this.albumInfo.image };
             this.$emit("play", trackToPlay);
         },
     },
