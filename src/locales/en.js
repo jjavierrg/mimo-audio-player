@@ -2,7 +2,7 @@ const messages = {
   album: {
     release_date: 'Release date: {date}',
     artist: 'Artist: {name}',
-    tracks: 'Tracks'
+    tracks: 'Tracks',
   },
   core: {
     home: 'Home',
@@ -12,12 +12,12 @@ const messages = {
     <p>Use search box to find a track and play or view album or artist information</p>
     `,
     search: 'Search',
-    no_results: 'No results'
+    no_results: 'No results',
   },
   artist: {
     member_sice: 'Member since: {date}',
     website: 'Website: {website}',
-    albums: 'Albums'
+    albums: 'Albums',
   },
   player: {
     play: 'Play',
@@ -31,7 +31,7 @@ const messages = {
     download: 'Download track',
     view: 'View album information',
     play: 'Play track',
-  }
+  },
 }
 
 export default messages

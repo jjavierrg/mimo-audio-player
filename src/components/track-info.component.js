@@ -1,7 +1,7 @@
 export default {
-    name: 'mimo-track-info',
-    props: ["track", "showDuration", "showAlbumInfo", "showPosition", "showCover"],
-    template: `
+  name: 'mimo-track-info',
+  props: ['track', 'showDuration', 'showAlbumInfo', 'showPosition', 'showCover'],
+  template: `
         <div class="d-flex align-items-center c-pointer">
             <img v-if="showCover" v-bind:src="track.image" class="me-2 img-album-thumb" @click="play" />
             <span v-if="showPosition" class="no-selection me-3">{{ track.position }}</span>
@@ -15,26 +15,26 @@ export default {
             <div class="me-2 c-pointer" v-bind:title="$t('track.play')" @click="play"><i class="fas fa-play"></i></div>
         </div>
     `,
-    methods: {
-        play() {
-            this.$emit("play", this.track);
-        },
-        download() {
-            window.open(this.track.audiodownload);
-        },
-        viewAlbum() {
-            this.$router.push(`/album/${this.track.album_id}`);
-        },
-        viewArtist() {
-            this.$router.push(`/artist/${this.track.artist_id}`);
-        },
-        getTrackDuration(totalSeconds) {
-            const sec_num = parseInt(totalSeconds, 10);
-            const hours = Math.floor(sec_num / 3600);
-            const minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-            const seconds = sec_num - (hours * 3600) - (minutes * 60);
+  methods: {
+    play() {
+      this.$emit('play', this.track)
+    },
+    download() {
+      window.open(this.track.audiodownload)
+    },
+    viewAlbum() {
+      this.$router.push(`/album/${this.track.album_id}`)
+    },
+    viewArtist() {
+      this.$router.push(`/artist/${this.track.artist_id}`)
+    },
+    getTrackDuration(totalSeconds) {
+      const sec_num = parseInt(totalSeconds, 10)
+      const hours = Math.floor(sec_num / 3600)
+      const minutes = Math.floor((sec_num - hours * 3600) / 60)
+      const seconds = sec_num - hours * 3600 - minutes * 60
 
-            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-    }
+      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+    },
+  },
 }

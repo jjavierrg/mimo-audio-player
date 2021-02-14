@@ -1,12 +1,12 @@
-import RadioService from "../services/radio.service.js";
-import TrackInfo from "./track-info.component.js";
+import RadioService from '../services/radio.service.js'
+import TrackInfo from './track-info.component.js'
 
 export default {
-    name: 'mimo-album',
-    components: {
-        'mimo-track-info': TrackInfo,
-    },
-    template: `
+  name: 'mimo-album',
+  components: {
+    'mimo-track-info': TrackInfo,
+  },
+  template: `
     <div v-if="!!albumInfo" class="d-flex flex-column">
         <fieldset class="d-flex mb-2">
             <img  v-bind:src="albumInfo.image" class="rounded img-album" /> 
@@ -22,31 +22,31 @@ export default {
         </div>
     </div>
     `,
-    created() {
-        this.api = new RadioService();
-        this.getAlbum(this.$router.currentRoute.params.album_id);
-        this.loading = false;
+  created() {
+    this.api = new RadioService()
+    this.getAlbum(this.$router.currentRoute.params.album_id)
+    this.loading = false
+  },
+  data: () => {
+    return {
+      loading: false,
+      albumInfo: undefined,
+    }
+  },
+  watch: {
+    $route(to, from) {
+      this.getAlbum(to.params.album_id)
     },
-    data: () => {
-        return {
-            loading: false,
-            albumInfo: undefined
-        }
+  },
+  methods: {
+    getAlbum: async function (albumId) {
+      this.loading = true
+      this.albumInfo = await this.api.getAlbumInfo(albumId)
+      this.loading = false
     },
-    watch: {
-        $route(to, from) {
-            this.getAlbum(to.params.album_id);
-        }
+    play(track) {
+      const trackToPlay = { ...track, artist_name: this.albumInfo.artist_name, album_name: this.albumInfo.name, image: this.albumInfo.image }
+      this.$emit('play', trackToPlay)
     },
-    methods: {
-        getAlbum: async function (albumId) {
-            this.loading = true;
-            this.albumInfo = await this.api.getAlbumInfo(albumId);
-            this.loading = false;
-        },
-        play(track) {
-            const trackToPlay = { ...track, artist_name: this.albumInfo.artist_name, album_name: this.albumInfo.name, image: this.albumInfo.image };
-            this.$emit("play", trackToPlay);
-        },
-    },
+  },
 }

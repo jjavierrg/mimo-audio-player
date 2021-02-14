@@ -1,15 +1,15 @@
-import Search from './search.component.js';
-import Player from './player.component.js';
-import StorageService from '../services/storage.service.js';
-import NotificationService from '../services/notification.service.js';
+import Search from './search.component.js'
+import Player from './player.component.js'
+import StorageService from '../services/storage.service.js'
+import NotificationService from '../services/notification.service.js'
 
 export default {
-    name: 'mimo-app',
-    components: {
-        'mimo-search': Search,
-        'mimo-player': Player
-    },
-    template: `
+  name: 'mimo-app',
+  components: {
+    'mimo-search': Search,
+    'mimo-player': Player,
+  },
+  template: `
     <div class="d-flex flex-column w-100 h-100">
         <div class="my-2 d-flex align-items-center">
             <i class="ms-3 c-pointer fas fa-home text-white fa-2x" @click="goHome" v-bind:title="$t('core.home')"></i>
@@ -24,32 +24,32 @@ export default {
         <mimo-player :track="track"></mimo-player>
     </div>
     `,
-    created() {
-        this.storage = new StorageService();
-        this.noficationService = new NotificationService();
+  created() {
+    this.storage = new StorageService()
+    this.noficationService = new NotificationService()
 
-        const userConf = this.storage.getUserConf();
-        this.userConf = userConf || { locale: 'en' };
-        this.noficationService.requestPermission();
+    const userConf = this.storage.getUserConf()
+    this.userConf = userConf || { locale: 'en' }
+    this.noficationService.requestPermission()
 
-        this.$i18n.locale = this.userConf.locale;
-    },
-    data() {
-        return {
-            track: undefined
-        };
-    },
-    methods: {
-        playTrack(track) {
-            this.noficationService.notifyTrack(track, this.$t("player.playing", { track: track.name }));
-            this.track = track;
-        },
-        goHome() {
-            this.$router.push(`/dashboard`);
-        },
-        save() {
-            this.userConf.locale = this.$i18n.locale;
-            this.storage.saveUserConf(this.userConf);
-        }
+    this.$i18n.locale = this.userConf.locale
+  },
+  data() {
+    return {
+      track: undefined,
     }
+  },
+  methods: {
+    playTrack(track) {
+      this.noficationService.notifyTrack(track, this.$t('player.playing', { track: track.name }))
+      this.track = track
+    },
+    goHome() {
+      this.$router.push(`/dashboard`)
+    },
+    save() {
+      this.userConf.locale = this.$i18n.locale
+      this.storage.saveUserConf(this.userConf)
+    },
+  },
 }

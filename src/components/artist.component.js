@@ -1,12 +1,12 @@
-import RadioService from "../services/radio.service.js";
-import AlbumInfo from "./album-info.component.js";
+import RadioService from '../services/radio.service.js'
+import AlbumInfo from './album-info.component.js'
 
 export default {
-    name: 'mimo-artist',
-    components: {
-        'mimo-album-info': AlbumInfo,
-    },
-    template: `
+  name: 'mimo-artist',
+  components: {
+    'mimo-album-info': AlbumInfo,
+  },
+  template: `
     <div v-if="!!artistInfo" class="d-flex flex-column">
         <fieldset class="d-flex mb-2">
             <img  v-bind:src="artistInfo.image" class="rounded img-album" /> 
@@ -22,27 +22,27 @@ export default {
         </div>
     </div>
     `,
-    created() {
-        this.api = new RadioService();
-        this.getArtist(this.$router.currentRoute.params.artist_id);
-        this.loading = false;
+  created() {
+    this.api = new RadioService()
+    this.getArtist(this.$router.currentRoute.params.artist_id)
+    this.loading = false
+  },
+  data: () => {
+    return {
+      loading: false,
+      artistInfo: undefined,
+    }
+  },
+  watch: {
+    $route(to, from) {
+      this.getArtist(to.params.artist_id)
     },
-    data: () => {
-        return {
-            loading: false,
-            artistInfo: undefined
-        }
+  },
+  methods: {
+    getArtist: async function (artistId) {
+      this.loading = true
+      this.artistInfo = await this.api.getArtistInfo(artistId)
+      this.loading = false
     },
-    watch: {
-        $route(to, from) {
-            this.getArtist(to.params.artist_id);
-        }
-    },
-    methods: {
-        getArtist: async function (artistId) {
-            this.loading = true;
-            this.artistInfo = await this.api.getArtistInfo(artistId);
-            this.loading = false;
-        }
-    },
+  },
 }

@@ -1,45 +1,45 @@
 body {
-    background-color: orange;
-    width: 100vw;
-    height: 100vh;
+  background-color: orange;
+  width: 100vw;
+  height: 100vh;
 }
 
 .img-album-thumb {
-    max-width: 48px;
-    max-height: 48px;
-    width: auto;
-    height: auto;
+  max-width: 48px;
+  max-height: 48px;
+  width: auto;
+  height: auto;
 }
 
 .img-album {
-    max-width: 100px;
-    max-height: 100px;
-    width: auto;
-    height: auto;
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
 }
 
 .c-pointer {
-    cursor: pointer !important;
+  cursor: pointer !important;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .no-selection {
-    user-select: none;
+  user-select: none;
 }
 
 .dropdown-menu {
-    transform: translate(0px, 46px) !important;
+  transform: translate(0px, 46px) !important;
 }
 
 .album-track {
-    min-height: 50px;
-    border-bottom: 1px solid;
+  min-height: 50px;
+  border-bottom: 1px solid;
 }
 
 .album-track:hover {
-    color: #1e2125;
-    background-color: #e9ecef;
+  color: #1e2125;
+  background-color: #e9ecef;
 }
