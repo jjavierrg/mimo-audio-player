@@ -3,10 +3,10 @@ export default {
     props: ["track"],
     template: `
         <div class="d-flex align-items-center c-pointer bg-dark text-light py-2 px-3">
-            <div v-if ="!playing" title="play" @click="play" class="me-3"><i class="fas fa-2x fa-play"></i></div>
-            <div v-if ="playing" title="pause" @click="pause" class="me-3"><i class="fas fa-2x fa-pause"></i></div>
-            <div v-if ="!muted" title="click to mute" @click="mute" class="me-3"><i class="fas fa-2x fa-volume-up"></i></div>
-            <div v-if ="muted" title="click to unmute" @click="unmute" class="me-3"><i class="fas fa-2x fa-volume-mute"></i></div>
+            <div v-if ="!playing" v-bind:title="$t('player.play')" @click="play" class="me-3"><i class="fas fa-2x fa-play"></i></div>
+            <div v-if ="playing" v-bind:title="$t('player.pause')" @click="pause" class="me-3"><i class="fas fa-2x fa-pause"></i></div>
+            <div v-if ="!muted" v-bind:title="$t('player.mute')" @click="mute" class="me-3"><i class="fas fa-2x fa-volume-up"></i></div>
+            <div v-if ="muted" v-bind:title="$t('player.unmute')" @click="unmute" class="me-3"><i class="fas fa-2x fa-volume-mute"></i></div>
             <img  v-if="track && track.image" v-bind:src="track.image" class="me-2 img-album-thumb" /> 
             <div v-if="track" class="d-flex flex-grow-1 no-selection flex-column me-2">
                 <span >{{track.artist_name}} - {{track.name}} ({{track.album_name}})</span>
@@ -14,7 +14,7 @@ export default {
                     <div class="progress-bar" role="progressbar" v-bind:style="{ width: progess + '%' }" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
-            <div v-if="track && track.audiodownload_allowed" title="Click to download"><i class="fas fa-2x fa-download"></div>
+            <div v-if="track && track.audiodownload_allowed" v-bind:title="$t('player.unmute')"><i class="fas fa-2x fa-download"></div>
         </div>
     `,
     created() {

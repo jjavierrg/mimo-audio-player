@@ -12,12 +12,12 @@ export default {
             <img  v-bind:src="artistInfo.image" class="rounded img-album" /> 
             <fieldset class="ms-3 d-flex flex-column">
                 <h2>{{ artistInfo.name }}</h2>
-                <label>Member since: {{ artistInfo.joindate }}</label>
-                <label v-if="!!artistInfo.website">WebSite: {{ artistInfo.website }}</label>
+                <label>{{ $t("artist.member_sice", { date: artistInfo.joindate }) }}</label>
+                <label v-if="!!artistInfo.website">{{ $t("artist.website", { website: artistInfo.website }) }}</label>
             </fieldset>
         </fieldset>
         <div v-if="!!artistInfo.albums && !!artistInfo.albums.length" class="flex-grow-1 overflow-auto">
-            <h4 class="mt-3 ms-3">Albums</h4>
+            <h4 class="mt-3 ms-3">{{ $t("artist.albums") }}</h4>
             <mimo-album-info v-for="album in artistInfo.albums" :key="album.id" :album="album"></mimo-album-info>
         </div>
     </div>

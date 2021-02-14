@@ -12,12 +12,12 @@ export default {
             <img  v-bind:src="albumInfo.image" class="rounded img-album" /> 
             <fieldset class="ms-3 d-flex flex-column">
                 <h2>{{ albumInfo.name }}</h2>
-                <label>Artist: {{ albumInfo.artist_name }}</label>
-                <label>Release date: {{ albumInfo.releasedate }}</label>
+                <label>{{ $t("album.artist", { name: albumInfo.artist_name }) }}</label>
+                <label>{{ $t("album.release_date", { date: albumInfo.releasedate }) }}</label>
             </fieldset>
         </fieldset>
         <div v-if="!!albumInfo.tracks && !!albumInfo.tracks.length" class="flex-grow-1 overflow-auto m-3">
-            <h4>Tracks</h4>
+            <h4>{{ $t("album.tracks") }}</h4>
             <mimo-track-info v-for="track in albumInfo.tracks" :key="track.id" :track="track" :showDuration="true" :showPosition="true" @play="play" class="album-track"></mimo-track-info>
         </div>
     </div>

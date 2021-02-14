@@ -10,9 +10,9 @@ export default {
                 <span v-if="track.artist_name" @click="viewArtist" class="text-primary c-pointer">{{track.artist_name}}</span>
             </span>
             <span v-if="showDuration" class="no-selection me-3">{{ getTrackDuration(track.duration) }}</span>
-            <div v-if="track.audiodownload_allowed" class="me-2 c-pointer" title="Download track" @click="download"><i class="fas fa-download"></i></div>
-            <div v-if="showAlbumInfo" class="me-2 c-pointer" title="View album information" @click="viewAlbum"><i class="fas fa-compact-disc"></i></div>
-            <div class="me-2 c-pointer" title="Play track" @click="play"><i class="fas fa-play"></i></div>
+            <div v-if="track.audiodownload_allowed" class="me-2 c-pointer" v-bind:title="$t('track.download')" @click="download"><i class="fas fa-download"></i></div>
+            <div v-if="showAlbumInfo" class="me-2 c-pointer" v-bind:title="$t('track.view')" @click="viewAlbum"><i class="fas fa-compact-disc"></i></div>
+            <div class="me-2 c-pointer" v-bind:title="$t('track.play')" @click="play"><i class="fas fa-play"></i></div>
         </div>
     `,
     methods: {
@@ -29,7 +29,7 @@ export default {
             this.$router.push(`/artist/${this.track.artist_id}`);
         },
         getTrackDuration(totalSeconds) {
-            const sec_num = parseInt(totalSeconds, 10); // don't forget the second param
+            const sec_num = parseInt(totalSeconds, 10);
             const hours = Math.floor(sec_num / 3600);
             const minutes = Math.floor((sec_num - (hours * 3600)) / 60);
             const seconds = sec_num - (hours * 3600) - (minutes * 60);

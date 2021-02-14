@@ -10,8 +10,13 @@ export default {
     template: `
     <div class="d-flex flex-column w-100 h-100">
         <div class="my-2 d-flex align-items-center">
-            <i class="ms-3 c-pointer fas fa-home text-white fa-2x" @click="goHome"></i>
+            <i class="ms-3 c-pointer fas fa-home text-white fa-2x" @click="goHome" v-bind:title="$t('core.home')"></i>
             <mimo-search  @play="playTrack" class="mx-2 flex-grow-1"></mimo-search>
+            <div class="locale-changer me-2">
+                <select v-model="$i18n.locale" class="form-select">
+                    <option v-for="(lang, i) in Object.keys($i18n.messages)" :key="i" :value="lang">{{ lang }}</option>
+                </select>
+            </div>
         </div>
         <div class="container-fluid flex-grow-1 mb-3 overflow-auto"><router-view  @play="playTrack" class="bg-white w-100 h-100 rounded p-2"></router-view></div>
         <mimo-player :track="track"></mimo-player>

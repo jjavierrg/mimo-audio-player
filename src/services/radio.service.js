@@ -49,7 +49,8 @@ export default class RadioService {
         const album = !!result.results && !!result.results.length ? result.results[0] : undefined;
 
         if (!!album && !!album.tracks && album.tracks.length) {
-            album.tracks = album.tracks.sort(t => parseInt(!t.position ? 0 : t.position, 10))
+            album.tracks.forEach(t => t.position = parseInt(!t.position ? 0 : t.position, 10));
+            album.tracks = album.tracks.sort((a, b) => a.position - b.position);
         }
 
         return album;
