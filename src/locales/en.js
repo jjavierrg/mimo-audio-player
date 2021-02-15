@@ -12,6 +12,7 @@ const messages = {
     <p>Use search box to find a track and play or view album or artist information</p>
     `,
     search: 'Search',
+    searching: 'Searching...',
     no_results: 'No results',
   },
   artist: {

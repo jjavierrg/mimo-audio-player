@@ -25,11 +25,9 @@ export default {
   created() {
     this.api = new RadioService()
     this.getAlbum(this.$router.currentRoute.params.album_id)
-    this.loading = false
   },
   data: () => {
     return {
-      loading: false,
       albumInfo: undefined,
     }
   },
@@ -40,9 +38,13 @@ export default {
   },
   methods: {
     getAlbum: async function (albumId) {
-      this.loading = true
-      this.albumInfo = await this.api.getAlbumInfo(albumId)
-      this.loading = false
+      this.$emit('loading', true)
+
+      try {
+        this.albumInfo = await this.api.getAlbumInfo(albumId)
+      } finally {
+        this.$emit('loading', false)
+      }
     },
     play(track) {
       const trackToPlay = { ...track, artist_name: this.albumInfo.artist_name, album_name: this.albumInfo.name, image: this.albumInfo.image }

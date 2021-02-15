@@ -12,6 +12,7 @@ const messages = {
     <p>Utilice el buscador para encontrar una canción y poder reproducirla u obtener información del disco o del artista</p>
     `,
     search: 'Buscar',
+    searching: 'Buscando...',
     no_results: 'Sin resultados',
   },
   artist: {

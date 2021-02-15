@@ -25,11 +25,9 @@ export default {
   created() {
     this.api = new RadioService()
     this.getArtist(this.$router.currentRoute.params.artist_id)
-    this.loading = false
   },
   data: () => {
     return {
-      loading: false,
       artistInfo: undefined,
     }
   },
@@ -40,9 +38,13 @@ export default {
   },
   methods: {
     getArtist: async function (artistId) {
-      this.loading = true
-      this.artistInfo = await this.api.getArtistInfo(artistId)
-      this.loading = false
+      this.$emit('loading', true)
+
+      try {
+        this.artistInfo = await this.api.getArtistInfo(artistId)
+      } finally {
+        this.$emit('loading', false)
+      }
     },
   },
 }
