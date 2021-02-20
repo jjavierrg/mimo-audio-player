@@ -8,7 +8,7 @@ const messages = {
     home: 'Inicio',
     dashboard: `
     <h1>Reproductor de música de Jamendo</h1>
-    <p>Aplicación SPA basada en vue que permite la reproducción de canciones a través del api de <a href="https://www.jamendo.com/">Jamendo</a></p>
+    <p>Aplicación SPA basada en vue que permite la reproducción de canciones a través del api de <a href="https://www.jamendo.com/" target="blank">Jamendo</a></p>
     <p>Utilice el buscador para encontrar una canción y poder reproducirla u obtener información del disco o del artista</p>
     `,
     search: 'Buscar',
