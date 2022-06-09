@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Publish Docker image and deploy
 
 on:
   push:
@@ -55,3 +55,11 @@ jobs:
         if: always() && github.event_name != 'pull_request'
         run: |
           docker buildx imagetools inspect ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}
+          
+      - name: Call portainer webhook
+        if: success() && github.event_name != 'pull_request'
+        uses: joelwmale/webhook-action@master
+        with:
+          url: ${{ secrets.WEBHOOK_URL }}
+          headers: '{"repository": "${{ github.event.repository.name }}"}'
+          body: '{"event": "deployment", "repository": "${{ github.event.repository.name }}"}'
