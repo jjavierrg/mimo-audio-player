@@ -31,7 +31,7 @@ jobs:
         run: |
                 docker tag ${{ github.event.repository.name }}:${{ steps.date.outputs.date }} ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }}:${{ steps.date.outputs.date }}
                 docker tag ${{ github.event.repository.name }}:latest ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }}:latest
-                docker push ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }} --all-tags
+                docker push ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }} --all-tags
       
       - name: Call portainer webhook
         if: success() && github.event_name != 'pull_request'
