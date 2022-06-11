@@ -7,7 +7,7 @@ const messages = {
   core: {
     home: 'Home',
     dashboard: `
-    <h1>Jamendo music player enhanced</h1>
+    <h1>Jamendo music player</h1>
     <p>Vue spa web-application that uses <a href="https://www.jamendo.com/" target="blank">Jamendo</a> api to play music tracks</p>
     <p>Use search box to find a track and play or view album or artist information</p>
     `,
