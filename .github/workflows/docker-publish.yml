@@ -24,11 +24,14 @@ jobs:
       
       - name: Build the Docker image
         if: success() && github.event_name != 'pull_request'
-        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ steps.date.outputs.date }} --tag ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
+        run: docker build . --file Dockerfile --tag ${{ github.event.repository.name }}:${{ steps.date.outputs.date }} --tag ${{ github.event.repository.name }}:latest
 
       - name: Docker Push
         if: success() && github.event_name != 'pull_request'
-        run: docker push ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }} --all-tags
+        run: |
+                docker tag ${{ github.event.repository.name }}:${{ steps.date.outputs.date }} ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }}:${{ steps.date.outputs.date }}
+                docker tag ${{ github.event.repository.name }}:latest ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }}:latest
+                docker push ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }} --all-tags
       
       - name: Call portainer webhook
         if: success() && github.event_name != 'pull_request'
