@@ -33,10 +33,10 @@ jobs:
                 docker tag ${{ github.event.repository.name }}:latest ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }}:latest
                 docker push ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }} --all-tags
       
-      - name: Call portainer webhook
-        if: success() && github.event_name != 'pull_request'
-        uses: joelwmale/webhook-action@master
-        with:
-          url: ${{ secrets.WEBHOOK_URL }}
-          headers: '{"repository": "${{ github.event.repository.name }}"}'
-          body: '{"event": "deployment", "repository": "${{ github.event.repository.name }}"}'
+#      - name: Call portainer webhook
+#        if: success() && github.event_name != 'pull_request'
+#        uses: joelwmale/webhook-action@master
+#        with:
+#          url: ${{ secrets.WEBHOOK_URL }}
+#          headers: '{"repository": "${{ github.event.repository.name }}"}'
+#          body: '{"event": "deployment", "repository": "${{ github.event.repository.name }}"}'
