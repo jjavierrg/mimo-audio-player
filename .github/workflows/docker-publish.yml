@@ -28,7 +28,7 @@ jobs:
 
       - name: Docker Push
         if: success() && github.event_name != 'pull_request'
-        run: docker push ${{ github.event.repository.name }} --all-tags
+        run: docker push ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }} --all-tags
       
       - name: Call portainer webhook
         if: success() && github.event_name != 'pull_request'
