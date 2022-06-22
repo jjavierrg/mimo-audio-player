@@ -12,6 +12,7 @@ export default {
     'mimo-loader': Loader,
   },
   template: `
+<h1>jjavierrg</h1>
     <div class="d-flex flex-column w-100 h-100">
         <div class="my-2 d-flex align-items-center">
             <i class="ms-3 c-pointer fas fa-home text-white fa-2x" @click="goHome" v-bind:title="$t('core.home')"></i>
