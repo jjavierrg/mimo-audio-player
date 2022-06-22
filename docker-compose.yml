@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  mimo-audio-player-website:
+    container_name: mimo-website
+    restart: always
+    labels:
+      project: 'mimo-audio-player'
+    networks:
+      - default
+    build:
+      dockerfile: Dockerfile
+      labels:
+        project: 'mimo-audio-player'
+
+networks:
+  default:
+    external: true
+    name: proxynet
