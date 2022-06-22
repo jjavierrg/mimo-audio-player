@@ -9,6 +9,7 @@ services:
     networks:
       - default
     build:
+      context: .
       dockerfile: Dockerfile
       labels:
         project: 'mimo-audio-player'
