@@ -3,9 +3,11 @@ name: Publish Docker image and deploy
 on:
   push:
     branches: [ "master" ]
-    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "master" ]
+    
+env:
+  PORTAINER_URL: "https://docker.jgallego.es/api"
 
 jobs:
   push_to_registry:
@@ -32,11 +34,21 @@ jobs:
                 docker tag ${{ github.event.repository.name }}:${{ steps.date.outputs.date }} ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }}:${{ steps.date.outputs.date }}
                 docker tag ${{ github.event.repository.name }}:latest ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }}:latest
                 docker push ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }} --all-tags
-      
-#      - name: Call portainer webhook
-#        if: success() && github.event_name != 'pull_request'
-#        uses: joelwmale/webhook-action@master
-#        with:
-#          url: ${{ secrets.WEBHOOK_URL }}
-#          headers: '{"repository": "${{ github.event.repository.name }}"}'
-#          body: '{"event": "deployment", "repository": "${{ github.event.repository.name }}"}'
+                
+  replace_container:
+    name: Replace container
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate
+        id: authRequest
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: '${{ env.PORTAINER_URL }}/auth'
+          method: 'POST'
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"username": "${{ secrets.DOCKER_USERNAME }}", "password": "${{ secrets.DOCKER_PASSWORD }}"}'
+          
+      - name: Show Response
+        run: |
+          echo ${{ steps.authRequest.outputs.response }}
+          echo ${{ fromJson(steps.authRequest.outputs.response).jwt }}
