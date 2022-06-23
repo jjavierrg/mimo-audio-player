@@ -11,9 +11,9 @@ env:
 
 jobs:  
   refresh_container:
-    name: Push Docker image to Docker Hub
+    name: Push Docker image to Portainer
     runs-on: ubuntu-latest
-    steps:
+    steps:    
       - name: Portainer auth
         id: authRequest
         uses: fjogeleit/http-request-action@v1
