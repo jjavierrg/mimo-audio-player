@@ -36,12 +36,14 @@ jobs:
           url: '${{ env.PORTAINER_URL }}/endpoints/2/docker/images/prune?filters={"dangling":{"false":true}}'
           method: 'POST'
           customHeaders: '{"Authorization": "Bearer ${{ fromJson(steps.authRequest.outputs.response).jwt }}"}'
-        
-      - name: Webhook
+          
+      - name: deploy new container
         uses: fjogeleit/http-request-action@v1
         with:
           url: ${{ secrets.WEBHOOK_URL }}
-          
+          method: 'POST'
+          timeout: 1200000
+
       - name: Clean unused images
         uses: fjogeleit/http-request-action@v1
         with:
