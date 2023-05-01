@@ -8,6 +8,7 @@ on:
     
 env:
   PORTAINER_URL: "https://jrgallego.dynssl.com:9443/api"
+  NODE_TLS_REJECT_UNAUTHORIZED: 0
 
 jobs:  
   refresh_container:
