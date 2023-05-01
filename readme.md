@@ -2,6 +2,7 @@
 # Mimo audio player
 [Vue.js](https://vuejs.org/) spa web-application made for html5 course of [Mimo](https://web.upsa.es/mimo/) degree that uses [Jamendo](https://www.jamendo.com/) api to play music tracks
 ![mimo-audio-player-screenshot](https://user-images.githubusercontent.com/3964098/175300048-70cbe90c-dc54-4dce-ba88-12d3c61c5b69.jpeg "Mimo audio player screenshot")
+
 ## Usage/Examples
 Even a docker image file and docker compose file is provided, the project can be executed just opening index.html file from a web browser
 
