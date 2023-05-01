@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
     
 env:
-  PORTAINER_URL: "https://docker.jgallego.es/api"
+  PORTAINER_URL: "https://jrgallego.dynssl.com:9443//api"
 
 jobs:  
   refresh_container:
